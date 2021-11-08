@@ -2,7 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es6",
     "sourceMap": true,
     // import * as _ from '_' はエラー、代わりにimport _ = require('_') を使う
     "esModuleInterop": true,
@@ -26,9 +26,10 @@
         "src/types/*"
       ]
     },
+    "lib": ["es6"]
   },
   // コンパイルする対象ファイルの場所
   "include": [
-    "app/**/*"
+    "src/*"
   ]
 }

@@ -22,14 +22,16 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./src:/app
+      - .:/app
     working_dir: /app
     command: yarn dev
     networks:
       - default
     depends_on:
       - mysql
+
 networks:
-  default:
+  app-net:
+    driver: bridge
 volumes:
   mysqldata:

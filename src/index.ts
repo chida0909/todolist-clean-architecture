@@ -1,4 +1,5 @@
 import express from 'express'
+import {con} from "./infrastructure/database";
 const PORT = 3000
 const app = express()
 const router = express.Router()
@@ -10,7 +11,11 @@ app.use(express.urlencoded({ extended: true }))
 router.get(
   '/',
   async (req: express.Request, res: express.Response): Promise<void> => {
-    res.send('hello world')
+    // res.send('hello world')
+      con.connect(function(err: any) {
+          if (err) throw err;
+          console.log('Connected');
+      });
   }
 )
 app.use('/', router)
