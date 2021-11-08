@@ -12,6 +12,8 @@ services:
       - ./mysql/init:/docker-entrypoint-initdb.d
     networks:
       - app-net
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD
   app:
     image: node:16
     env_file: ./app.env
@@ -28,7 +30,9 @@ services:
     networks:
       - app-net
     depends_on:
-      - mysql
+#      - mysql
+      mysql:
+        condition: service_healthy
 
 networks:
   app-net:
